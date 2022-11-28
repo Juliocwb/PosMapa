@@ -7,7 +7,7 @@ import datetime
 
 
 options = webdriver.ChromeOptions()
-prefs ={"download.default_directory":"Users/juliocarvalho/Downloads/"}
+prefs ={"download.default_directory":"Users/juliocarvalho/Desktop/PosMapa/Bolsab3"}
 
 options.add_experimental_option("prefs",prefs)
 driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=options)
