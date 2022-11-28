@@ -14,7 +14,7 @@ colors= {
 
 df = pd.read_csv('https://gist.githubusercontent.com/chriddyp/9166432/raw/0d5410f1f8da88670adc86080e7154009ebf4906/indicator%2520gapminder%2520gdp_per_capita_ppp%2520-%2520Data.csv')
 
-fig_scatter = px.scatter(df, x="gpd per capita", y="Life expectation",
+fig_scatter = px.scatter(df, x="GDP per capita", y="Life expectation",
              size= "population", color= "continenet", hover_name="country",
              template='plotly_dark')
 
