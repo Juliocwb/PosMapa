@@ -1,4 +1,3 @@
-import pandas_datareader.data as web
 import yfinance as yf
 import datetime
 import time
