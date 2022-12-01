@@ -62,7 +62,7 @@ def body():
                 children=[
                     dcc.Graph(
                         id='example-graph-2',
-                        figure=fig_scater
+                        figure=fig_scatter
                     ),
                 ]
             ),
