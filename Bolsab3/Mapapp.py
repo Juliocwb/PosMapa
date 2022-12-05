@@ -1,8 +1,10 @@
 from re import template
 from dash import dcc, html, Dash
+import yfinance as yf
 import plotly.express as px
 import pandas as pd
 from selenium import webdriver
+import datetime
 import webbrowser
 import time
 
@@ -11,9 +13,12 @@ colors= {
     'background' :'#111111',
     'text' : '#7FDBFF'
 }
+yf.pdr_override()
+start = datetime.datetime(2009, 1, 1)
+end = datetime.datetime(2022, 11, 1)
 
 options = webdriver.ChromeOptions()
-prefs ={"download.default_directory":"Users/juliocarvalho/Downloads/"}
+prefs ={"download.default_directory" : "Users/juliocarvalho/Downloads/"}
 
 options.add_experimental_option("prefs",prefs)
 driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=options)
@@ -35,7 +40,14 @@ ativos = map(lambda a: f"{a}.SA", ativos)
 ativos_sa =" ".join(list(ativos))
 
 ativos_sa
-fig =px.bar(df.head, x='Tipo', y='Tipo',color='Codigo',barmode="group")
+yf.pdr_override()
+cotacoes_ativos = yf.download(tickers=ativos_sa,period='1Y')
+cotacoes_ativos['Adj Close'].info()
+cotacoes_ativos.head()
+cotacoes_ativos_fechamentos =cotacoes_ativos['Adj Close']
+
+
+fig =px.bar(df, x='Tipo', y='Tipo',color='Codigo',barmode="group")
 
 app.layout =html.Div(children=[
     html.H1(children='Mapa Bolsab3'),
